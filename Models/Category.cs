@@ -11,11 +11,17 @@ namespace expense_tracker.Models
 		[Column(TypeName = "nvarchar(50)")]
         public string Title { get; set; } = "";
 
-		[Column(TypeName = "nvarchar(5)")]
+		[Column(TypeName = "nvarchar(50)")]
 		public string Icon { get; set; } = "";
 
 		[Column(TypeName = "nvarchar(10)")]
 		public string Type { get; set; } = "Expense";
+
+		[NotMapped]
+		public string? TitleIcon
+		{
+			get { return this.Icon + " " + this.Title; }
+		}
 
 
 		public Category()

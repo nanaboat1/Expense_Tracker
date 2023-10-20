@@ -11,7 +11,7 @@ using expense_tracker.Models;
 namespace expense_tracker.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231008093153_InitialCreate")]
+    [Migration("20231008121832_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
