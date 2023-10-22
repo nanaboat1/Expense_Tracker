@@ -27,14 +27,14 @@ namespace expense_tracker.Controllers
         }
 
         // GET: Category/AddOrEdit
-        public IActionResult AddOrEdit(int id=0)
+        public IActionResult AddOrEdit(int id = 0)
         {
             if (id == 0)
             {
-                return View(new Category());
+                return View( new Category());
             } else
             {
-                return View(_context.Categories.Find(id)); 
+                return View(_context?.Categories.Find(id)); 
             }
 
         }
@@ -43,9 +43,10 @@ namespace expense_tracker.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken] // NOTE : causing the submission issue for new elements.
         public async Task<IActionResult> AddOrEdit([Bind("CategoryId,Title,Icon,Type")] Category category)
         {
+
             if (ModelState.IsValid)
             {
                 if (category.CategoryId == 0)
@@ -55,6 +56,7 @@ namespace expense_tracker.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(category);
         }
 

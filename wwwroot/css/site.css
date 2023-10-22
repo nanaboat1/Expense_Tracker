@@ -33,6 +33,7 @@ body {
     box-shadow:none;
 }
 
+/* Hyperlink */
 .no-a-decoration, .no-a-decoration:hover{
     text-decoration:none;
     color:inherit;
@@ -40,6 +41,12 @@ body {
 
 e-bigger {
     font-size: x-large; 
+}
+
+/* BreadCrumb*/
+.e-breadcrumb a, .e-breadcrumb a:hover {
+    text-decoration: none !important;
+    color: inherit !important; 
 }
 
 /* Grid*/

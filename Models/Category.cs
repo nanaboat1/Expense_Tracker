@@ -18,7 +18,7 @@ namespace expense_tracker.Models
 		public string Type { get; set; } = "Expense";
 
 		[NotMapped]
-		public string? TitleIcon
+		public string? TitleWithIcon
 		{
 			get { return this.Icon + " " + this.Title; }
 		}
