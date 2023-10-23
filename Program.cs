@@ -21,7 +21,8 @@ internal class Program
             options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
                 .LogTo(Console.WriteLine, LogLevel.Information)
                 .EnableSensitiveDataLogging()
-                .EnableDetailedErrors();
+                .EnableDetailedErrors()
+                .UseLoggerFactory(LoggerFactory.Create( builder => builder.AddDebug())); // detailed logging
         });
 
         // Syncfusion licence key

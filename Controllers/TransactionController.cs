@@ -26,27 +26,39 @@ namespace expense_tracker.Controllers
         }
 
         // GET: Transaction/Create
-        public IActionResult AddOrEdit()
+        public IActionResult AddOrEdit(int id=0)
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
-            return View(new Transaction());
+            PopulateCategories();
+            if (id == 0)
+                return View(new Transaction());
+            else
+                return View(_context.Transactions.Find(id)); 
         }
 
-        // POST: Transaction/Create
+        // POST: Transaction/AddOrEdit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddOrEdit([Bind("TransactionId,CategoryId,Amount,Note,Date")] Transaction transaction)
         {
+            Console.WriteLine( transaction.Category?.CategoryId);
+
             if (ModelState.IsValid)
             {
-                _context.Add(transaction);
+        
+                if (transaction.TransactionId == 0)
+                    
+                    _context.Add(transaction);
+                else
+                
+                    _context.Update(transaction);
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", transaction.CategoryId);
-            return View(transaction);
+            PopulateCategories();
+            return View(transaction); 
         }
 
         // POST: Transaction/Delete/5
@@ -66,6 +78,17 @@ namespace expense_tracker.Controllers
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        [NonAction]
+        public void PopulateCategories()
+        {
+            var CategoryCollection = _context.Categories.ToList();
+            Category defaultCategory = new Category() { CategoryId = 0, Title = "Choose a Category" };
+            CategoryCollection.Insert(0, defaultCategory);
+            ViewBag.Categories = CategoryCollection;
+
+          
         }
 
     }

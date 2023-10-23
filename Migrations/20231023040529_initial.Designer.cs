@@ -11,8 +11,8 @@ using expense_tracker.Models;
 namespace expense_tracker.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231008121832_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231023040529_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,7 +30,7 @@ namespace expense_tracker.Migrations
 
                     b.Property<string>("Icon")
                         .IsRequired()
-                        .HasColumnType("nvarchar(5)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Title")
                         .IsRequired()

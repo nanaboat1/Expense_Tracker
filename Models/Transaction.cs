@@ -18,10 +18,17 @@ namespace expense_tracker.Models
 		[Column(TypeName ="nvarchar(75)")]
 		public string? Note { get; set; }
 
-		public DateTime Date { get; set; } = DateTime.Now; 
+		public DateTime Date { get; set; } = DateTime.Now;
+
+		[NotMapped]
+		public string? CategoryTitleWithIcon
+		{
+			get { return this?.Category?.Icon + " " + this.Category?.Title; }
+		}
 
 
-		public Transaction()
+
+        public Transaction()
 		{
 		}
 	}

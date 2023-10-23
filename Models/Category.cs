@@ -11,7 +11,7 @@ namespace expense_tracker.Models
 		[Column(TypeName = "nvarchar(50)")]
         public string Title { get; set; } = "";
 
-		[Column(TypeName = "nvarchar(50)")]
+		[Column(TypeName = "varchar(255)")]
 		public string Icon { get; set; } = "";
 
 		[Column(TypeName = "nvarchar(10)")]
@@ -27,7 +27,6 @@ namespace expense_tracker.Models
 		public Category()
 		{
 			
-
 		}
 	}
 }
