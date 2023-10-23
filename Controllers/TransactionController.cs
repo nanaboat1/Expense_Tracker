@@ -42,7 +42,7 @@ namespace expense_tracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddOrEdit([Bind("TransactionId,CategoryId,Amount,Note,Date")] Transaction transaction)
         {
-            Console.WriteLine( transaction.Category?.CategoryId);
+            // Console.WriteLine( transaction.Category?.CategoryId);
 
             if (ModelState.IsValid)
             {
