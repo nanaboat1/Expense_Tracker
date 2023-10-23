@@ -27,8 +27,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Migrations\" />
+    <None Remove="Views\Dashboard\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="Views\Dashboard\" />
   </ItemGroup>
 </Project>
